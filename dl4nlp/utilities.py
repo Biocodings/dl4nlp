@@ -13,16 +13,6 @@ def softmax(x):
     return x
 
 
-def sigmoid(x):
-    """
-    Sigmoid function
-    :param x: scalar value
-    :return: probability value
-    """
-    x = 1.0 / (1.0 + np.exp(-x))
-    return x
-
-
 def sigmoid_gradient(f):
     """
     Sigmoid gradient function

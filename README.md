@@ -21,6 +21,16 @@ In order to train word vectors, use this command:
 
     ./bin/word2vec.py input.txt output.txt <vector_size> <context_size>
 
+## NPLM (Neural Probabilistic Language Model; Bengio 2003)
+In order to train neural probabilistic language model, use this command:
+
+    ./bin/train_nplm.py input.txt output.txt <vocabulary_size> <context_size> <feature_size> <hidden_size> <iterations>
+
+In order to predict next word using trained NPLM, use this command:
+
+    ./bin/predict_nplm.py output.txt
+
+Here, output.txt is the output of train_nplm.py. Then type context words to standard input.
 
 ## Unit testing
 Run the following command on the top of project directory.

@@ -1,10 +1,11 @@
 import unittest
 import numpy as np
+from scipy.special import expit
 from dl4nlp.logistic_regression import logistic_regression_cost_gradient, multinomial_logistic_regression_cost_gradient
 from dl4nlp.gradient_descent import gradient_descent
 from dl4nlp.sgd import bind_cost_gradient, batch_sampler, get_stochastic_sampler
 from dl4nlp.gradient_check import gradient_check
-from dl4nlp.utilities import sigmoid, softmax
+from dl4nlp.utilities import softmax
 
 
 class TestLogisticRegression(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestLogisticRegression(unittest.TestCase):
 
         # Train logistic regression and see if it predicts correct label
         final_parameters, cost_history = gradient_descent(logistic_regression_wrapper, initial_parameters, 100)
-        prediction = sigmoid(np.dot(input, final_parameters)) > 0.5
+        prediction = expit(np.dot(input, final_parameters)) > 0.5
         self.assertEqual(output, prediction)
 
     def test_multinomial_logistic_regression(self):
@@ -62,7 +63,7 @@ class TestLogisticRegression(unittest.TestCase):
 
         # Train logistic regression and see if it predicts correct labels
         final_parameters, cost_history = gradient_descent(cost_gradient, initial_parameters, 100)
-        predictions = sigmoid(np.dot(inputs, final_parameters)) > 0.5
+        predictions = expit(np.dot(inputs, final_parameters)) > 0.5
 
         # Binary classification of 3 data points with 5 dimension is always linearly separable
         for output, prediction in zip(outputs, predictions):

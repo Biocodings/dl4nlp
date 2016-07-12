@@ -1,5 +1,6 @@
 import numpy as np
-from dl4nlp.utilities import sigmoid, softmax
+from scipy.special import expit
+from dl4nlp.utilities import softmax
 
 
 def logistic_regression_cost_gradient(parameters, input, output):
@@ -10,7 +11,7 @@ def logistic_regression_cost_gradient(parameters, input, output):
     :param output: binary label (0 or 1)
     :return: cost and gradient for the input and output
     """
-    prediction = sigmoid(np.dot(input, parameters))
+    prediction = expit(np.dot(input, parameters))
     if output:
         inside_log = prediction
     else:

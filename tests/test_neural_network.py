@@ -1,10 +1,11 @@
 import unittest
 import numpy as np
+from scipy.special import expit
 from dl4nlp.neural_network import neural_network_cost_gradient, flatten_cost_gradient
 from dl4nlp.sgd import bind_cost_gradient, batch_sampler
 from dl4nlp.gradient_descent import gradient_descent
 from dl4nlp.gradient_check import gradient_check
-from dl4nlp.utilities import sigmoid, softmax
+from dl4nlp.utilities import softmax
 
 
 class TestNeuralNetwork(unittest.TestCase):
@@ -47,7 +48,7 @@ class TestNeuralNetwork(unittest.TestCase):
 
         for input, output in zip(inputs, outputs):
             input = input.reshape(-1, 1)
-            hidden_layer = sigmoid(W1.dot(input))
+            hidden_layer = expit(W1.dot(input))
             inside_softmax = W2.dot(hidden_layer)
             prediction = softmax(inside_softmax.reshape(-1)).reshape(-1, 1)
             label = np.argmax(prediction)

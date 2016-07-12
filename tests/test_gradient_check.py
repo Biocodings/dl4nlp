@@ -1,7 +1,8 @@
 import unittest
 import numpy as np
+from scipy.special import expit
 from dl4nlp.gradient_check import gradient_check
-from dl4nlp.utilities import sigmoid, sigmoid_gradient
+from dl4nlp.utilities import sigmoid_gradient
 
 
 class TestGradientCheck(unittest.TestCase):
@@ -15,7 +16,7 @@ class TestGradientCheck(unittest.TestCase):
 
     def test_gradient_check_sigmoid(self):
         def sigmoid_check(x):
-            return sigmoid(x), sigmoid_gradient(sigmoid(x))
+            return expit(x), sigmoid_gradient(expit(x))
 
         x = np.array(0.0)
         result = gradient_check(sigmoid_check, x)

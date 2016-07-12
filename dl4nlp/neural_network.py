@@ -1,5 +1,6 @@
 import numpy as np
-from dl4nlp.utilities import softmax, sigmoid, sigmoid_gradient
+from scipy.special import expit
+from dl4nlp.utilities import softmax, sigmoid_gradient
 
 
 def neural_network_cost_gradient(parameters, input, output):
@@ -13,7 +14,7 @@ def neural_network_cost_gradient(parameters, input, output):
     W1, W2 = parameters
     input = input.reshape(-1, 1)
 
-    hidden_layer = sigmoid(W1.dot(input))
+    hidden_layer = expit(W1.dot(input))
     inside_softmax = W2.dot(hidden_layer)
 
     # TODO: allow softmax to normalize column vector

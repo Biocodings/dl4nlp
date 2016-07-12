@@ -1,7 +1,8 @@
 import unittest
 import numpy as np
 from math import exp
-from dl4nlp.utilities import sigmoid, sigmoid_gradient, softmax
+from scipy.special import expit
+from dl4nlp.utilities import sigmoid_gradient, softmax
 
 
 class TestUtilities(unittest.TestCase):
@@ -40,7 +41,7 @@ class TestUtilities(unittest.TestCase):
 
     def test_sigmoid(self):
         x = np.array([[1, 2], [-1, -2]])
-        f = sigmoid(x)
+        f = expit(x)
         g = sigmoid_gradient(f)
         expected = np.array([[0.73105858,  0.88079708],
                     [0.26894142,  0.11920292]])
